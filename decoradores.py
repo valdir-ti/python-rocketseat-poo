@@ -1,5 +1,8 @@
-# Decoradores adicionam funcionalidades nas funções sem alterar o comportamento delas, 
-# através de wrapper, que são os encapsulamentos da função com códigos antes de depois da mesma
+# Um decorador é uma função especial que pode ser usada para modificar ou 
+# aprimorar o comportamento de outras funções ou métodos. Os decoradores 
+# são uma parte poderosa e flexível do Python, proporcionando uma maneira 
+# elegante de realizar tarefas comuns, como modificar argumentos ou resultados 
+# de funções, medir o tempo de execução, realizar validações, entre outros.
 
 # função
 def meu_decorador(func):

@@ -19,6 +19,17 @@ class Personagem:
     
     def exibir_detalhes(self):
         return f"Nome: {self.get_nome()}\nVida: {self.get_vida()}\nNível: {self.get_nivel()}"
+    
+    def receber_ataque(self, dano):
+        self.__vida -= dano
+        if self.__vida < 0:
+            self.__vida = 0
+
+    def atacar(self, alvo):
+        dano = self.__nivel * 2
+        alvo.receber_ataque(dano)
+        print(f"{self.get_nome()} atacou {alvo.get_nome()} e causou {dano} de dano")
+
 
 class Heroi(Personagem):
     def __init__(self, nome, vida, nivel, habilidade) -> None:
@@ -42,8 +53,33 @@ class Inimigo(Personagem):
     def exibir_detalhes(self):
         return f"{super().exibir_detalhes()}\nTipo: {self.get_tipo()}\n"
     
-heroi = Heroi(nome="Herói", vida=100, nivel=5, habilidade="Super Força")
-print(heroi.exibir_detalhes())
 
-inimigo = Inimigo(nome="Morcego", vida=50, nivel=3, tipo="Voador")
-print(inimigo.exibir_detalhes())
+class Jogo:
+    '''Classe orquestradora do jogo'''
+    def __init__(self) -> None:
+        self.heroi = Heroi(nome="Herói", vida=100, nivel=5, habilidade="Super Força")
+        self.inimigo = Inimigo(nome="Morcego", vida=50, nivel=3, tipo="Voador")
+
+    def iniciar_batalha(self):
+        '''Fazer a gestão da batalha em turnos'''
+        print("Iniciando a batalha")
+        while self.heroi.get_vida() > 0 and self.inimigo.get_vida() > 0:
+            print("\nDetalhes dos Personagens:")
+            print(self.heroi.exibir_detalhes())
+            print(self.inimigo.exibir_detalhes())
+
+            input("Pressione Enter para atacar...")            
+            escolha = int(input("Escolha (1- Ataque Normal, 2- Ataque Especial): "))
+
+            if escolha == 1:
+                self.heroi.atacar(self.inimigo)
+            else:
+                print("Escolha inválida, escolha novamente")
+
+        if self.heroi.get_vida() > 0:            
+            print(f"\nParabéns você venceu a batalha")
+        else:
+            print(f"\nInfelizemente você perdeu a batalha")
+
+jogo = Jogo()
+jogo.iniciar_batalha()

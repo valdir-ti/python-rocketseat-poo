@@ -1,5 +1,14 @@
 # @classmethod
+    # Um método de classe é um método associado à classe e não à instância.
+    # Recebe a classe como o primeiro argumento (cls) em vez da instância.
+    # Pode ser chamado na classe sem criar uma instância, mas tem acesso à classe.
+    # Geralmente usado para criar métodos que envolvem a classe de alguma forma.
+
 # @staticmethod
+    # Um método estático é um método associado à classe, não à instância.
+    # Pode ser chamado na classe sem criar uma instância dessa classe.
+    # Não tem acesso ao objeto ou seus atributos. Portanto, não pode usar self.
+    # Declarado usando o decorador @staticmethod.
 
 class MinhaClasse:
     valor = 10 # atributo da classe
